@@ -1,0 +1,33 @@
+h1 {
+  color         : red;
+  font          : 50pt georgia;
+  padding-left  : 0;
+  padding-right : 0;
+  margin-left   : auto;
+  margin-right  : auto;
+  display       : block;
+  width         : 600px;
+}
+
+html body {
+  height: 100%;
+}
+
+body {
+  font: 20pt georgia;
+}
+
+/* canvas { */
+  /* padding-left  : 0; */
+  /* padding-right : 0; */
+  /* margin-left   : auto; */
+  /* margin-right  : auto; */
+  /* display       : block; */
+  /* width         : 600px; */
+/* } */
+
+#explanation {
+  color: blue;
+  font: 30pt arial;
+  text-align: center;
+}
