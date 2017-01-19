@@ -9,4 +9,5 @@ And this should have a vim-plugin support which utilizes the quickfix
 feature of vim, so that jumping between tags is easy and natural.
 
 #Screen Shot
+
 ![alt tag](http://github.com/JSDurand/stacker/blob/master/images/first\ image.png)
