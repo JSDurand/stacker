@@ -13,15 +13,31 @@
     </script>
   </head>
   <body>
-    <div id="first_math">
-      Let $K$ be a finite extension of $Q_p$.<br>
-      Now let $L$ be a finite extension of $K$, with ramification
-      index $e_{L/K}$.<br>
-      Consider the Herbrand function $\phi_{L/K}$ and the indices
-      $i_{L/K},\,u_{L/K}:=\phi_{L/K}(i_{L/K})$.
+    <div id="container">
+      <header>
+        <nav>
+          <a href=#container>TOP</a>
+          <a href=#bottom>BOTTOM</a>
+        </nav>
+        <h1>STACKER</h1>
+      </header>
+      <div id="banner">
+        <h2>Create your mathematics in a structural way!</h2>
+      </div>
+      <div id="content">
+        <p>EXAMPLE CONTENT</p>
+        <div id="first_math">
+          Let $K$ be a finite extension of $Q_p$.<br>
+          Now let $L$ be a finite extension of $K$, with ramification
+          index $e_{L/K}$.<br>
+          Consider the Herbrand function $\phi_{L/K}$ and the indices
+          $i_{L/K},\,u_{L/K}:=\phi_{L/K}(i_{L/K})$.
+        </div>
+        <h2>A simple network by vis.js</h2>
+        <div id="mynetwork"></div>
+        <script src="main.js"></script>
+      </div>
     </div>
-    <p>A simple network by vis.js</p>
-    <div id="mynetwork"></div>
-    <script src="main.js"></script>
+    <div id="bottom"></div>
   </body>
 </html>

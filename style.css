@@ -1,20 +1,53 @@
 h1 {
   color         : red;
-  font          : 50pt georgia;
+  /* font          : 50pt georgia; */
   padding-left  : 0;
   padding-right : 0;
   margin-left   : auto;
   margin-right  : auto;
   display       : block;
   width         : 600px;
+  border: 0;
 }
 
 html body {
   height: 100%;
+  border: 0;
 }
 
 body {
   font: 20pt georgia;
+  text-align: center;
+}
+
+header {
+  background: #dbdbdb;
+  height: 100px;
+  width: 100%;
+  z-index: 10;
+  position: fixed;
+}
+
+nav {
+  float: left;
+}
+
+#banner {
+  width: 100%;
+  height: 700px;
+  position: fixed;
+  top: 100px;
+  color: rgb(255, 0, 255);
+  background: url("./images/maxresdefault.jpg");
+  background-size: cover;
+}
+
+#content {
+  width: 100%;
+  position: relative;
+  top: 800px;
+  background: #ebebeb;
+  height: 1500px;
 }
 
 #explanation {
@@ -26,10 +59,12 @@ body {
 #first_math {
   font: 25pt georgia;
   display: block;
+  text-align: left;
 }
 
 #mynetwork {
   width: 600px;
   height: 400px;
   border: 1px solid lightgray;
+  text-align: left;
 }
