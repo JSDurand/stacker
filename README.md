@@ -10,4 +10,4 @@ feature of vim, so that jumping between tags is easy and natural.
 
 #Screen Shot
 
-![alt tag](http://github.com/JSDurand/stacker/blob/master/images/first%20image.png)
+![alt tag](images/first%20image.png)
