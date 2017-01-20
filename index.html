@@ -5,6 +5,7 @@
     <title>STACKER</title>
     <link rel="stylesheet" href="vis.css">
     <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="test.css"> -->
     <script src="vis.js"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
@@ -14,15 +15,22 @@
   </head>
   <body>
     <div id="container">
-      <header>
-        <nav>
-          <a href=#container>TOP</a>
-          <a href=#bottom>BOTTOM</a>
-        </nav>
-        <h1>STACKER</h1>
-      </header>
+      <!-- <header> -->
+        <!-- <nav> -->
+          <!-- <a href=#container>TOP</a> -->
+          <!-- <a href=#bottom>BOTTOM</a> -->
+        <!-- </nav> -->
+        <!-- <h1>STACKER</h1> -->
+      <!-- </header> -->
       <div id="banner">
-        <h2>Create your mathematics in a structural way!</h2>
+        <nav>
+          <a href=#content>content</a>
+          <a href=#mynetwork>picture</a>
+        </nav>
+        <div id="banner_text">
+          <h2>Math with Structure</h2>
+        </div>
+        <div id="myanime"><br><br><br>HAVE FUN!</div>
       </div>
       <div id="content">
         <p>EXAMPLE CONTENT</p>
@@ -36,8 +44,8 @@
         <h2>A simple network by vis.js</h2>
         <div id="mynetwork"></div>
         <script src="main.js"></script>
+        <nav><a href=#container id="top_nav">TOP</a></nav>
       </div>
     </div>
-    <div id="bottom"></div>
   </body>
 </html>
