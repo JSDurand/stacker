@@ -40,9 +40,9 @@ a {
   color: #ffff00;
 }
 
-a:hover {
-  color: #00ff00;
-}
+/* a:hover { */
+  /* color: #00ff00; */
+/* } */
 
 #banner {
   width: 101%;
@@ -88,6 +88,11 @@ a:hover {
 #picture-anchor {
   position: absolute;
   top: -59px;
+}
+
+#edit-anchor {
+  position: absolute;
+  top: -50px;
 }
 
 #explanation {
@@ -204,7 +209,7 @@ li.dropdown {
 
 .dropdown-content a:hover {
   background-color: #eaeaea;
-  color: black;
+  color: #14ff32;
 }
 
 .dropdown:hover .dropdown-content {
@@ -214,4 +219,76 @@ li.dropdown {
 .dropdown:hover .dropbtn {
   background-color: red;
   color: white;
+}
+
+#edit-area {
+  display: none;
+  position: relative;
+}
+
+textarea {
+  width: 101%;
+  height: 200px;
+  font-size: 24pt;
+}
+
+#edit-btn {
+  background-color: rgb(255, 0, 0);
+  color: black;
+  font-size: 24;
+}
+
+#edit-btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#edit-btn span::after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#edit-btn:hover span {
+  padding-right: 25px;
+}
+
+#edit-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+li a span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+li a span::after {
+  content: '  \27F9';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  transition: 0.5s;
+}
+
+li a:hover span {
+  padding-right: 50px;
+}
+
+li a:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#node-content {
+  text-align: left;
+  font-size: 28pt;
+  background-color: #e0e0e0;
 }

@@ -1,7 +1,7 @@
 <!doctype html5>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>STACKER</title>
     <link rel="stylesheet" href="vis.css">
     <link rel="stylesheet" href="style.css">
@@ -20,11 +20,11 @@
           <li><a href=#content-anchor>Content</a></li>
           <li><a href=#picture-anchor>Picture</a></li>
           <li class="dropdown">
-            <a class="dropbtn" href="#">Action</a>
+            <a class="dropbtn" href="#"><span>Actions</span></a>
             <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
+              <a href="#edit-anchor" onclick="add_lemma()">Add a node</a>
+              <a href="#">Show dependencies</a>
+              <a href="#">Do something</a>
             </div>
           </li>
           <li><a href="#">Top</a></li>
@@ -34,22 +34,28 @@
         <div id="banner_text">
           <h2>Math with Structure</h2>
         </div>
-        <!-- <div id="myanime"></div> -->
       </div>
       <div id="content">
         <div id="content-anchor"></div>
-        <p>EXAMPLE CONTENT</p>
         <div id="first_math">
-          Let $K$ be a finite extension of $Q_p$.<br>
-          Now let $L$ be a finite extension of $K$, with ramification
-          index $e_{L/K}$.<br>
-          Consider the Herbrand function $\phi_{L/K}$ and the indices
-          $i_{L/K},\,u_{L/K}:=\phi_{L/K}(i_{L/K})$.
+          Current node &#10233
+          <br><br><br>
+          <div id="node-content">
+            Nothing.
+          </div>
         </div>
         <div id="picture">
           <div id="picture-anchor"></div>
           <h2>A simple network by vis.js</h2>
           <div id="mynetwork"></div>
+        </div>
+        <br><br><br>
+        <div id="edit-area">
+          <div id="edit-anchor"></div>
+          <br>
+          <p style="text-align: left;">Enter the lemma below:</p>
+          <textarea id="editing" name="EDIT" cols="30" rows="10"></textarea>
+          <button id="edit-btn"><span>Submit node</span></button>
         </div>
         <script src="main.js"></script>
       </div>

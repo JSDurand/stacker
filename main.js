@@ -22,3 +22,8 @@ var data = {
 };
 var options = {};
 var network = new vis.Network(container, data, options);
+
+function add_lemma () {
+  document.getElementById("edit-area").style.display = 'block';
+  // alert(document.getElementById("editing").value);
+}
