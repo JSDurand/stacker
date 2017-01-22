@@ -140,16 +140,6 @@ a:hover {
   /* color: orange; */
 /* } */
 
-#top_nav {
-  left: 48%;
-  position: absolute;
-  color: orange;
-}
-
-#top_nav:hover {
-  color: #00ff00;
-}
-
 ul {
   list-style-type: none;
   margin: 0;
