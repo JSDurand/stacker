@@ -15,24 +15,29 @@
   </head>
   <body>
     <div id="container">
-      <!-- <header> -->
-        <!-- <nav> -->
-          <!-- <a href=#container>TOP</a> -->
-          <!-- <a href=#bottom>BOTTOM</a> -->
-        <!-- </nav> -->
-        <!-- <h1>STACKER</h1> -->
-      <!-- </header> -->
+      <header>
+        <ul>
+          <li><a href=#content-anchor>Content</a></li>
+          <li><a href=#picture-anchor>Picture</a></li>
+          <li class="dropdown">
+            <a class="dropbtn" href="#">Action</a>
+            <div class="dropdown-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </li>
+          <li><a href="#">Top</a></li>
+        </ul>
+      </header>
       <div id="banner">
-        <nav>
-          <a href=#content>content</a>
-          <a href=#mynetwork>picture</a>
-        </nav>
         <div id="banner_text">
           <h2>Math with Structure</h2>
         </div>
-        <div id="myanime"><br><br><br>HAVE FUN!</div>
+        <!-- <div id="myanime"></div> -->
       </div>
       <div id="content">
+        <div id="content-anchor"></div>
         <p>EXAMPLE CONTENT</p>
         <div id="first_math">
           Let $K$ be a finite extension of $Q_p$.<br>
@@ -41,9 +46,14 @@
           Consider the Herbrand function $\phi_{L/K}$ and the indices
           $i_{L/K},\,u_{L/K}:=\phi_{L/K}(i_{L/K})$.
         </div>
-        <h2>A simple network by vis.js</h2>
-        <div id="mynetwork"></div>
+        <div id="picture">
+          <div id="picture-anchor"></div>
+          <h2>A simple network by vis.js</h2>
+          <div id="mynetwork"></div>
+        </div>
         <script src="main.js"></script>
+        <br>
+        <br>
         <nav><a href=#container id="top_nav">TOP</a></nav>
       </div>
     </div>

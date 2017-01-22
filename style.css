@@ -20,13 +20,14 @@ body {
   text-align: center;
 }
 
-/* header { */
-  /* background: #dbdbdb; */
-  /* height: 100px; */
-  /* width: 100%; */
-  /* z-index: 10; */
-  /* position: fixed; */
-/* } */
+header {
+  top: -2px;
+  left: -2px;
+  height: 100px;
+  width: 101%;
+  z-index: 10;
+  position: fixed;
+}
 
 nav {
   left: 3%;
@@ -75,6 +76,20 @@ a:hover {
   height: 1500px;
 }
 
+#content-anchor {
+  position: absolute;
+  top: -59px;
+}
+
+#picture {
+  position: relative;
+}
+
+#picture-anchor {
+  position: absolute;
+  top: -59px;
+}
+
 #explanation {
   color: blue;
   font: 30pt helvetica;
@@ -94,31 +109,36 @@ a:hover {
   text-align: left;
 }
 
-@keyframes courrir {
-  25% {transform: translate(100%, 0%);}
-  50% {transform: translate(100%, 100%);}
-  75% {transform: translate(0%, 100%);}
-  100% {transform: translate(0%, 0%);}
-}
+/* @keyframes courrir { */
+  /* 25% {transform: translate(100%, 0%) rotate(90deg); background: yellow; color: rgb(20, 20, 255);} */
+  /* 50% {transform: translate(100%, 100%) rotate(180deg); background: red;} */
+  /* 75% {transform: translate(0%, 100%) rotate(270deg); background: rgb(50, 250, 50);} */
+  /* 100% {transform: translate(0%, 0%) rotate(359deg); background: rgb(50, 50, 100); color: rgb(200, 200, 100);} */
+/* } */
 
-#myanime {
-  width: 100px;
-  height: 100px;
-  top: 25%;
-  left: 40%;
-  position: absolute;
-  border-radius: 50%;
-  background: cyan;
-  animation: courrir 5s linear infinite;
-  z-index: 10;
-  font: 10pt arial;
-  color: rgb(20, 20, 255);
-}
+/* #myanime { */
+  /* width: 100px; */
+  /* height: 50px; */
+  /* top: 30%; */
+  /* left: 40%; */
+  /* position: absolute; */
+  /* background: cyan; */
+  /* animation: courrir 5s linear infinite; */
+  /* z-index: 10; */
+  /* font: 10pt arial; */
+  /* color: rgb(20, 20, 255); */
+  /* animation-play-state: running; */
+/* } */
 
-#myanime:hover {
-  background: rgb(100, 101, 250);
-  color: orange;
-}
+/* #myanime:hover { */
+  /* background: red; */
+  /* animation-play-state: paused; */
+/* } */
+
+/* #myanime:hover { */
+  /* background: rgb(100, 101, 250); */
+  /* color: orange; */
+/* } */
 
 #top_nav {
   left: 48%;
@@ -128,4 +148,80 @@ a:hover {
 
 #top_nav:hover {
   color: #00ff00;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+  background-color: #333;
+}
+
+li a, .droptbtn {
+  color: white;
+  display: inline-block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+  color: white;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+/* .dropbtn { */
+  /* background-color: #af4c50; */
+  /* color: white; */
+  /* padding: 16px; */
+  /* font-size: 16px; */
+  /* border: none; */
+  /* cursor: pointer; */
+/* } */
+
+/* .dropdown { */
+  /* position: relative; */
+  /* display: inline-block; */
+  /* float: left; */
+/* } */
+
+.dropdown-content {
+  position: absolute;
+  display: none;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 12;
+}
+
+.dropdown-content a {
+  color: black;
+  text-align: left;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #eaeaea;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: red;
+  color: white;
 }
