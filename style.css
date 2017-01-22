@@ -67,6 +67,17 @@ a {
   color: rgb(250, 255, 0);
 }
 
+#banner_pic {
+  position: fixed;
+  top: -7%;
+  width: 101%;
+  height: 1000px;
+  background: url("./images/stacks.png");
+  background-size: cover;
+  opacity: 0.3;
+  z-index: 9;
+}
+
 #content {
   width: 101%;
   position: relative;
@@ -151,7 +162,7 @@ ul {
   font-size: 0pt;
   list-style-type: none;
   margin: 0;
-  padding-right: 20px;
+  padding-right: 100px;
   background-color: #333;
   overflow: hidden;
 }
@@ -160,6 +171,12 @@ li {
   float: left;
   background-color: #333;
   font-size: 20pt;
+}
+
+.dropdown-content.right-drop {
+  position: absolute;
+  right: 0;
+  margin-right: 100px;
 }
 
 li a, .droptbtn {
