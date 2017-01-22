@@ -27,3 +27,7 @@ function add_lemma () {
   document.getElementById("edit-area").style.display = 'block';
   // alert(document.getElementById("editing").value);
 }
+
+function show_dep () {
+  alert("NOT IMPLEMENTED YET!");
+}

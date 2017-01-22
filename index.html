@@ -17,17 +17,19 @@
     <div id="container">
       <header>
         <ul>
-          <li><a href=#content-anchor>Content</a></li>
-          <li><a href=#picture-anchor>Picture</a></li>
           <li class="dropdown">
             <a class="dropbtn" href="#"><span>Actions</span></a>
             <div class="dropdown-content">
-              <a href="#edit-anchor" onclick="add_lemma()">Add a node</a>
-              <a href="#">Show dependencies</a>
-              <a href="#">Do something</a>
+              <a href="#edit-anchor" onclick="add_lemma()"><span>Add a node</span></a>
+              <a href="" onclick="show_dep()"><span>Show dependencies</span></a>
+              <a href="#"><span>Do something</span></a>
             </div>
           </li>
-          <li><a href="#">Top</a></li>
+          <div class="right-li">
+            <li><a href=#content-anchor><span>Content</span></a></li>
+            <li><a href=#picture-anchor><span>Picture</span></a></li>
+            <li><a href="#"><span>Top</span></a></li>
+          </div>
         </ul>
       </header>
       <div id="banner">
@@ -46,7 +48,7 @@
         </div>
         <div id="picture">
           <div id="picture-anchor"></div>
-          <h2>A simple network by vis.js</h2>
+          <h2>Dependency graph using vis.js</h2>
           <div id="mynetwork"></div>
         </div>
         <br><br><br>
