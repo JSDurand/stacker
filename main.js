@@ -8,8 +8,28 @@ function show_graph (nodes, edges) {
     nodes: true_nodes,
     edges: true_edges
   };
-  var options = {};
+  var options = {interaction: {hover: true}};
   var network = new vis.Network(container, data, options);
+  network.on('hoverNode', function(properties) {
+    var ids = properties.node;
+    var clicked_label = true_nodes.get(ids).label;
+    var clicked_type = clicked_label.split(/\s+/)[0];
+    var complete_nodes = JSON.parse(localStorage.getItem(clicked_type));
+    var len = complete_nodes.length;
+    var statement, proof;
+    for (var i = 0; i < len; i++) {
+      if (complete_nodes[i].name === clicked_label) {
+        statement = complete_nodes[i].statement;
+        proof = complete_nodes[i].proof;
+        break;
+      }
+    }
+    var informater = document.getElementById('information');
+    statement = statement.replace('\n', '<br>');
+    proof = proof.replace('\n', '<br>');
+    informater.innerHTML = statement + '<br>' + proof;
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'information']); 
+  });
 }
 
 function add_lemma () {
@@ -70,3 +90,8 @@ function show_dep () {
 function show_all () {
   alert("NOT IMPLEMENTED YET!");
 }
+
+// function find_node (nodes_set, label) {
+  // We assume nodes_set is an array of objects
+  // for
+// }

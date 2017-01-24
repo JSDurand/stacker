@@ -120,7 +120,9 @@ function do_links () {
   for (var i = 0, len = all_nodes_obj.length; i < len; i++) {
     var current_node    = all_nodes_obj[i];
     var current_content = current_node.statement + current_node.proof;
-    nodes_set.push({id: i, label: current_node.name});
+    nodes_set.push({id: i,
+                    label: current_node.name,
+                    node_type: current_node.name.split(/\s+/)[0]});
     edges_set = add_link(edges_set, current_content, i, all_nodes_obj);
   }
 
