@@ -1,33 +1,72 @@
 // Just a simple example.
 
-var nodes = new vis.DataSet([
-    {id: 1, label: 'child of first child'},
-    {id: 2, label: 'first child'},
-    {id: 3, label: 'root'},
-    {id: 4, label: 'second child'},
-    {id: 5, label: 'child of second child'}
-]);
-// create an array with edges
-var edges = new vis.DataSet([
-  {from: 3, to: 2},
-  {from: 3, to: 4},
-  {from: 2, to: 1},
-  {from: 4, to: 5},
-]);
-// create a network
-var container = document.getElementById('mynetwork');
-var data = {
-  nodes: nodes,
-  edges: edges
-};
-var options = {};
-var network = new vis.Network(container, data, options);
+function show_graph (nodes, edges) {
+  var container = document.getElementById('mynetwork');
+  var true_nodes = new vis.DataSet(nodes);
+  var true_edges = new vis.DataSet(edges);
+  var data = {
+    nodes: true_nodes,
+    edges: true_edges
+  };
+  var options = {};
+  var network = new vis.Network(container, data, options);
+}
 
 function add_lemma () {
   document.getElementById("edit-area").style.display = 'block';
-  // alert(document.getElementById("editing").value);
+  var nodes_str = localStorage.getItem("nodes");
+  if (!nodes_str) {
+    localStorage.setItem("nodes", "");
+  }
+
+  var edges_str = localStorage.getItem("edges");
+  if (!edges_str) {
+    localStorage.setItem("edges", "");
+  }
+
+  var lemmata_str = localStorage.getItem("lemmata");
+  if (!lemmata_str) {
+    localStorage.setItem("lemmata", "[]");
+  }
+
+  var propositions_str = localStorage.getItem("propositions");
+  if (!propositions_str) {
+    localStorage.setItem("propositions", "[]");
+  }
+
+  var theoremata_str = localStorage.getItem("theoremata");
+  if (!theoremata_str) {
+    localStorage.setItem("theoremata", "[]");
+  }
+}
+
+function clear_lemma () {
+  localStorage.setItem("lemmata", "[]");
+  localStorage.setItem("propositions", "[]");
+  localStorage.setItem("theoremata", "[]");
+  localStorage.setItem("nodes", "[]");
+  localStorage.setItem("edges", "[]");
 }
 
 function show_dep () {
+  var nodes_str = localStorage.getItem("nodes");
+  if (nodes_str === "") {
+    alert("no nodes yet!");
+    return;
+  }
+  var nodes     = JSON.parse(nodes_str);
+
+  var edges_str = localStorage.getItem("edges");
+  if (edges_str === "") {
+    alert("no edges yet!");
+    return;
+  }
+  var edges     = JSON.parse(edges_str);
+
+  show_graph(nodes, edges);
+
+}
+
+function show_all () {
   alert("NOT IMPLEMENTED YET!");
 }

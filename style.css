@@ -56,6 +56,15 @@ a {
 
 #banner_text:hover {
   color: rgb(222,66,48);
+  animation-name: text_anime;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+}
+
+@keyframes text_anime {
+  from {color: rgb(250, 255, 0);}
+  to {color: rgb(222, 66, 48);}
 }
 
 #banner_text {
@@ -84,7 +93,7 @@ a {
   top: 800px;
   left: -8px;
   background: #ebebeb;
-  height: 1500px;
+  height: 2500px;
 }
 
 #content-anchor {
@@ -308,20 +317,20 @@ textarea {
   font-size: 24pt;
 }
 
-#edit-btn {
+button {
   background-color: rgb(255, 0, 0);
   color: black;
   font-size: 24;
 }
 
-#edit-btn span {
+button span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-#edit-btn span::after {
+button span::after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -330,11 +339,11 @@ textarea {
   transition: 0.5s;
 }
 
-#edit-btn:hover span {
+button:hover span {
   padding-right: 25px;
 }
 
-#edit-btn:hover span:after {
+button:hover span:after {
   opacity: 1;
   right: 0;
 }

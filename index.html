@@ -21,8 +21,8 @@
             <a class="dropbtn"><span>Actions</span></a>
             <div class="dropdown-content">
               <a class="item-1" href="#edit-anchor" onclick="add_lemma()"><span>Add a node</span></a>
-              <a class="item-2" href="#content-anchor" onclick="show_dep()"><span>Show dependencies</span></a>
-              <a class="item-3" href="#"><span>Do something</span></a>
+              <a class="item-2" href="#picture-anchor" onclick="show_dep()"><span>Show dependencies</span></a>
+              <a class="item-3" onclick="show_all()"><span>Show all</span></a>
             </div>
           </li>
           <div class="right-li">
@@ -31,7 +31,7 @@
               <div class="dropdown-content right-drop">
                 <a class="item-1" href="#content-anchor"><span>Content</span></a>
                 <a class="item-2" href="#picture-anchor"><span>Picture</span></a>
-                <a class="item-3" href="#"><span>Top</span></a>
+                <a class="item-3" href=""><span>Top</span></a>
               </div>
             </li>
           </div>
@@ -61,9 +61,20 @@
         <div id="edit-area">
           <div id="edit-anchor"></div>
           <br>
-          <p style="text-align: left;">Enter the lemma below:</p>
-          <textarea id="editing" name="EDIT" cols="30" rows="10"></textarea>
+          <p style="text-align: left;">
+            Enter the lemma below:<br>
+            Use <strong>begin:</strong>
+            to mark the statement<br>
+            use <strong>proof:</strong> to mark the proof<br>
+            use <strong>\href{url}{text}</strong> to link to other nodes.
+          </p>
+          <textarea id="editing" name="EDIT" cols="30" rows="10" autofocus>
+Lemma A
+begin:This is a statement.
+proof:This is a proof.
+          </textarea>
           <button id="edit-btn" onclick="parse();"><span>Submit node</span></button>
+          <button id="clear-btn" onclick="clear_lemma();"><span>Clear Data</span></button>
         </div>
         <script src="parse.js"></script>
         <script src="main.js"></script>
