@@ -24,13 +24,29 @@ function parse () {
   // check if the name has been used before
   var name_ok = check_name(obj.name, types);
   if (!name_ok) {
-    alert("this name has been used before\nPick another one!");
-    return;
+    var ok = prompt('Do you want to replace the old one?\nEnter y or n.');
+    alert('ok = ' + ok);
+    switch (ok) {
+      case 'y':
+        alert('typeofobj= ' + type_of_obj + '\nand obj.name= ' + obj.name);
+        localStorage.setItem(type_of_obj,
+          JSON.stringify(JSON.parse(localStorage.getItem(type_of_obj)).filter(function (element) {return element.name !== obj.name;})));
+        break;
+      case 'n':
+        return null;
+        break;
+      default:
+        alert('Please enter y or n.');
+        return null;
+        break;
+    }
   }
 
-  obj.num = true_num;
+  obj.num       = true_num;
   obj.statement = take_statement(object_string);
-  obj.proof = take_proof(object_string);
+  obj.proof     = take_proof(object_string);
+  types         = JSON.parse(localStorage.getItem(type_of_obj));
+  obj_arr = types || [];
   obj_arr.push(obj);
 
   var obj_string_to_store = JSON.stringify(obj_arr);
@@ -63,7 +79,7 @@ function determine_type (str) {
 
 function determine_num (str) {
   var words = str.split(/\s+/);
-  if (words[1] === "none") {
+  if (words[1].indexOf('begin:') !== -1) {
     return null;
   }
 

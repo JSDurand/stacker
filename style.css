@@ -37,12 +37,8 @@ nav {
 }
 
 a {
-  color: #ffff00;
+  color: #0000ff;
 }
-
-/* a:hover { */
-  /* color: #00ff00; */
-/* } */
 
 #banner {
   width: 101%;
@@ -133,7 +129,8 @@ a {
   width: 600px;
   height: 400px;
   border: 1px solid lightgray;
-  text-align: left;
+  float: right;
+  /* text-align: left; */
 }
 
 /* @keyframes courrir { */
@@ -387,4 +384,10 @@ ul:hover {
 #information {
   font-size: 40;
   font-weight: bold;
+  text-align: left;
+}
+
+.underline {
+  text-decoration: underline;
+  cursor: pointer;
 }

@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+mvim --remote-silent ./index.html ./parse.js ./main.js ./style.css
