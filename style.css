@@ -175,6 +175,17 @@ ul {
   /* border-bottom: 5px solid #ccc; */
 }
 
+ul.format {
+  font-size: 0pt;
+  list-style-type: circle;
+  margin: 0;
+  padding-right: 0px;
+  background-color: #ebebeb;
+  overflow: auto;
+  box-shadow: none;
+  /* border-bottom: 5px solid #ccc; */
+}
+
 li {
   float: left;
   font-size: 20pt;

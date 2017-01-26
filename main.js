@@ -26,9 +26,9 @@ function show_graph (nodes, edges) {
     }
     var informater = document.getElementById('information');
     statement = statement.replace('\n', '<br>'); // replace the new line
-    statement = statement.replace(/\\href{(.*?)}/, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
+    statement = statement.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
     proof = proof.replace('\n', '<br>');
-    proof = proof.replace(/\\href{(.*?)}/, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
+    proof = proof.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
     var true_title, true_label = clicked_label.split(/\s+/)[1];
     switch (clicked_type) {
       case 'lemmata':
@@ -44,7 +44,7 @@ function show_graph (nodes, edges) {
         true_title = 'Not available';
         break;
     }
-    informater.innerHTML = true_title + true_label + ':<br>' + statement + '<br>Proof:<br>' + proof;
+    informater.innerHTML = true_title + true_label + ':<br>' + statement + '<br><br>Proof:<br>' + proof;
     MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'information']); 
     network.body.emitter.emit('_dataChanged');
     network.redraw();
@@ -154,12 +154,12 @@ function show_lem (lem_str) {
 
   // insert into HTML
   true_statement = true_statement.replace('\n', '<br>'); // replace the new line
-  true_statement = true_statement.replace(/\\href{(.*?)}/, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
+  true_statement = true_statement.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
   true_proof = true_proof.replace('\n', '<br>');
-  true_proof = true_proof.replace(/\\href{(.*?)}/, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
+  true_proof = true_proof.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
   var container = document.getElementById('node-content');
   container.innerHTML = "<strong>" + true_label + ':</strong><br>' + true_statement
-    + '<br><strong>Proof:</strong><br>' + true_proof;
+    + '<br><br><strong>Proof:</strong><br>' + true_proof;
 }
 
 // This function executes when the page loads and exhibits the desired node
@@ -176,7 +176,7 @@ function show_on_load () {
   }
 
   if (lemma_str === "") {
-    alert("syntax error: there should be \"lemmata=\" in the query string");
+    alert("syntax error: there should be a query string.");
     return;
   }
 
