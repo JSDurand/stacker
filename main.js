@@ -1,4 +1,4 @@
-// Just a simple example.
+// The main file
 
 function show_graph (nodes, edges) {
   var container = document.getElementById('mynetwork');
@@ -8,7 +8,10 @@ function show_graph (nodes, edges) {
     nodes: true_nodes,
     edges: true_edges
   };
-  var options = {interaction: {hover: true}};
+  var options = {interaction: {hover: true}, edges: {
+    arrows: 'to',
+    physics: true
+  }};
   var network = new vis.Network(container, data, options);
   network.on('hoverNode', function(properties) {
     var ids = properties.node;
@@ -25,10 +28,27 @@ function show_graph (nodes, edges) {
       }
     }
     var informater = document.getElementById('information');
-    statement = statement.replace('\n', '<br>'); // replace the new line
+
+    // statement part
+    statement = statement.replace(/\n/g, '<br>'); // replace the new line
     statement = statement.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
-    proof = proof.replace('\n', '<br>');
+    // replace enumerate things
+    statement = statement.replace(/\\begin{enumerate}\s*?\\item/g, "<ol><li>");
+    statement = statement.replace(/\\item/g, "</li><li>");
+    statement = statement.replace(/\\end{enumerate}/g, "</li></ol>");
+
+    // proof part
+    proof = proof.replace(/\n/g, '<br>');
     proof = proof.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
+
+    // replace enumerate things
+    proof = proof.replace(/\\begin{enumerate}\s*?\\item/g, "<ol><li>");
+    proof = proof.replace(/\\item/g, "</li><li>");
+    proof = proof.replace(/\\end{enumerate}/g, "</li></ol>");
+
+    // title and label
+    // label is the first word after title; maybe this should be
+    // refined later.
     var true_title, true_label = clicked_label.split(/\s+/)[1];
     switch (clicked_type) {
       case 'lemmata':
@@ -80,6 +100,10 @@ function add_lemma () {
 }
 
 function clear_lemma () {
+  var sure = prompt('Are you sure you  want to clear all the data?\nEnter y or n.');
+
+  if (sure === 'n') { return; }
+
   localStorage.setItem("lemmata", "[]");
   localStorage.setItem("propositions", "[]");
   localStorage.setItem("theoremata", "[]");
@@ -153,10 +177,21 @@ function show_lem (lem_str) {
   }
 
   // insert into HTML
-  true_statement = true_statement.replace('\n', '<br>'); // replace the new line
+  true_statement = true_statement.replace(/\n/g, '<br>'); // replace the new line
   true_statement = true_statement.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
-  true_proof = true_proof.replace('\n', '<br>');
+  // replace enumerate things
+  true_statement = true_statement.replace(/\\begin{enumerate}\s*?\\item/g, "<ol><li>");
+  true_statement = true_statement.replace(/\\item/g, "</li><li>");
+  true_statement = true_statement.replace(/\\end{enumerate}/g, "</li></ol>");
+
+  true_proof = true_proof.replace(/\n/g, '<br>');
   true_proof = true_proof.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
+
+  // replace enumerate things
+  true_proof = true_proof.replace(/\\begin{enumerate}\s*?\\item/g, "<ol><li>");
+  true_proof = true_proof.replace(/\\item/g, "</li><li>");
+  true_proof = true_proof.replace(/\\end{enumerate}/g, "</li></ol>");
+
   var container = document.getElementById('node-content');
   container.innerHTML = "<strong>" + true_label + ':</strong><br>' + true_statement
     + '<br><br><strong>Proof:</strong><br>' + true_proof;
@@ -188,3 +223,73 @@ function show_on_load () {
 }
 
 window.onload = show_on_load;
+
+// show an independent lemma
+function show_independent () {
+  var url = window.location.href;
+  var append = document.getElementById("information").innerHTML.split(/:<br>/)[0];
+  append = append.replace(/ /g, '%20');
+  if (append === '') {
+    alert('Nothing to show');
+    return;
+  }
+
+  var question_index = url.indexOf('?'); // index of question
+   if (question_index !== -1) { // if query string
+     url = url.split(/\?/)[0];
+   }
+
+  var anchor_index   = url.indexOf('#'); // index of anchor
+   if (anchor_index !== -1) { // if anchor string
+     url = url.split(/#/)[0];
+   }
+
+  url = url + '?' + append + '#content-anchor';
+
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+
+// transform function
+function transform_to_inner (str) {
+  var first_word = str.split(/\s+/)[0], title;
+  switch (first_word) {
+    case "Lemma":
+      title = "lemmata";
+      break;
+    case "Proposition":
+      title = "propositions";
+      break;
+    case "Theorem":
+      title = "theoremata";
+      break;
+    default:
+      title = "not available";
+      alert(title);
+      break;
+  }
+
+  return title + ' ' + str.split(/\s+/)[1];
+}
+
+// refine or edit the node
+function refine () {
+  var title = document.getElementById('node-content').innerText.split(/:\n/)[0];
+  var complete_name_of_obj = transform_to_inner(title);
+  var type_of_obj = complete_name_of_obj.split(/\s+/)[0];
+
+  var types = JSON.parse(localStorage.getItem(type_of_obj));
+  var len = types.length, obj = {};
+
+  for (var i = 0; i < len; i++) {
+    if (types[i].name === complete_name_of_obj) {
+      var find      = types[i];
+      obj.statement = find.statement;
+      obj.proof     = find.proof;
+    }
+  }
+
+  document.getElementById('editing').value =
+    title + '\nbegin:' + obj.statement + '\nproof:' + obj.proof;
+  document.getElementById('edit-area').style.display = 'block';
+}

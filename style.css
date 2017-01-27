@@ -89,7 +89,7 @@ a {
   top: 800px;
   left: -8px;
   background: #ebebeb;
-  height: 2500px;
+  min-height: 2500px;
 }
 
 #content-anchor {
@@ -99,6 +99,7 @@ a {
 
 #picture {
   position: relative;
+  overflow: hidden;
 }
 
 #picture-anchor {
@@ -130,6 +131,7 @@ a {
   height: 400px;
   border: 1px solid lightgray;
   float: right;
+  overflow: hidden;
   /* text-align: left; */
 }
 
@@ -186,7 +188,7 @@ ul.format {
   /* border-bottom: 5px solid #ccc; */
 }
 
-li {
+ul li {
   float: left;
   font-size: 20pt;
 }
@@ -329,6 +331,12 @@ button {
   background-color: rgb(255, 0, 0);
   color: black;
   font-size: 24;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+#refine-btn {
+  background-color: rgba(0, 255, 200, 0.7);
 }
 
 button span {
@@ -386,6 +394,9 @@ li a:hover span:after {
   background-color: #e0e0e0;
   padding-top: 20px;
   padding-bottom: 25px;
+  padding-left: 24px;
+  text-indent: 0px;
+  overflow: hidden;
 }
 
 ul:hover {
@@ -396,9 +407,35 @@ ul:hover {
   font-size: 40;
   font-weight: bold;
   text-align: left;
+  padding-left: 24px;
+  overflow: hidden;
 }
 
 .underline {
   text-decoration: underline;
   cursor: pointer;
+}
+
+ol {
+  counter-reset: list;
+  padding: 10px;
+  margin: 0px;
+}
+
+ol > li {
+  list-style: none;
+  position: relative;
+  padding-left: 1em;
+}
+
+ol > li:before {
+  /* padding-right: 10px; */
+  content: " (" counter(list, decimal) ") ";
+  counter-increment: list;
+  position: absolute;
+  margin-left: -1.7em;
+}
+
+.clear {
+  clear: both;
 }

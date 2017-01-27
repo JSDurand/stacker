@@ -25,10 +25,8 @@ function parse () {
   var name_ok = check_name(obj.name, types);
   if (!name_ok) {
     var ok = prompt('Do you want to replace the old one?\nEnter y or n.');
-    alert('ok = ' + ok);
     switch (ok) {
       case 'y':
-        alert('typeofobj= ' + type_of_obj + '\nand obj.name= ' + obj.name);
         localStorage.setItem(type_of_obj,
           JSON.stringify(JSON.parse(localStorage.getItem(type_of_obj)).filter(function (element) {return element.name !== obj.name;})));
         break;

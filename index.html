@@ -15,6 +15,7 @@
     </script>
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
     </script>
+    </script>
   </head>
   <body>
     <div id="container">
@@ -49,17 +50,22 @@
       <div id="content">
         <div id="content-anchor"></div>
         <div id="first_math">
-          Linked node &#10233
+          Linked node $\Longrightarrow$
           <br><br><br>
           <div id="node-content">
             Nothing.
           </div>
+          <div style="text-align: center;">
+            <button href="#edit-anchor" id="refine-btn" onclick="refine();"><span>Edit this node</span></button>
+          </div>
         </div>
+        <br><br><br>
         <div id="picture">
           <div id="picture-anchor"></div>
           <h2>Dependency graph using vis.js</h2>
           <div id="mynetwork"></div>
           <div id="information"></div>
+          <button id="show-btn" onclick="show_independent();"><span>Show this</span></button>
         </div>
         <br><br><br>
         <div id="edit-area">
@@ -82,6 +88,7 @@ proof:This is a proof.
         </div>
         <script src="parse.js"></script>
         <script src="main.js"></script>
+        <br class="clear">
       </div>
     </div>
   </body>
