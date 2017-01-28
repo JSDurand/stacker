@@ -30,21 +30,10 @@ function show_graph (nodes, edges) {
     var informater = document.getElementById('information');
 
     // statement part
-    statement = statement.replace(/\n/g, '<br>'); // replace the new line
-    statement = statement.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
-    // replace enumerate things
-    statement = statement.replace(/\\begin{enumerate}\s*?\\item/g, "<ol><li>");
-    statement = statement.replace(/\\item/g, "</li><li>");
-    statement = statement.replace(/\\end{enumerate}/g, "</li></ol>");
+    statement = transform_in(statement);
 
     // proof part
-    proof = proof.replace(/\n/g, '<br>');
-    proof = proof.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
-
-    // replace enumerate things
-    proof = proof.replace(/\\begin{enumerate}\s*?\\item/g, "<ol><li>");
-    proof = proof.replace(/\\item/g, "</li><li>");
-    proof = proof.replace(/\\end{enumerate}/g, "</li></ol>");
+    proof = transform_in(proof);
 
     // title and label
     // label is the first word after title; maybe this should be
@@ -100,7 +89,7 @@ function add_lemma () {
 }
 
 function clear_lemma () {
-  var sure = prompt('Are you sure you  want to clear all the data?\nEnter y or n.');
+  var sure = prompt('Are you sure you want to clear all the data?\nEnter y or n.');
 
   if (sure === 'n') { return; }
 
@@ -177,20 +166,8 @@ function show_lem (lem_str) {
   }
 
   // insert into HTML
-  true_statement = true_statement.replace(/\n/g, '<br>'); // replace the new line
-  true_statement = true_statement.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
-  // replace enumerate things
-  true_statement = true_statement.replace(/\\begin{enumerate}\s*?\\item/g, "<ol><li>");
-  true_statement = true_statement.replace(/\\item/g, "</li><li>");
-  true_statement = true_statement.replace(/\\end{enumerate}/g, "</li></ol>");
-
-  true_proof = true_proof.replace(/\n/g, '<br>');
-  true_proof = true_proof.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
-
-  // replace enumerate things
-  true_proof = true_proof.replace(/\\begin{enumerate}\s*?\\item/g, "<ol><li>");
-  true_proof = true_proof.replace(/\\item/g, "</li><li>");
-  true_proof = true_proof.replace(/\\end{enumerate}/g, "</li></ol>");
+  true_statement = transform_in(true_statement);
+  true_proof     = transform_in(true_proof);
 
   var container = document.getElementById('node-content');
   container.innerHTML = "<strong>" + true_label + ':</strong><br>' + true_statement
@@ -292,4 +269,56 @@ function refine () {
   document.getElementById('editing').value =
     title + '\nbegin:' + obj.statement + '\nproof:' + obj.proof;
   document.getElementById('edit-area').style.display = 'block';
+}
+
+// refresh preview
+function refresh () {
+  var preview       = document.getElementById('preview');
+  var edit          = document.getElementById('editing').value;
+  var title         = edit.split(/begin:/)[0];
+  var new_title     = '<strong>' + title + '</strong>';
+  edit              = edit.replace(title, new_title);
+  edit              = transform_in(edit);
+  preview.innerHTML = edit;
+
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'preview']); 
+}
+
+function transform_in (str) {
+  var return_str = str.replace(/\\href{(.*?)}/g, "<a target=\"_blank\" href=\"?$1#content-anchor\" class=\"underline\">$1</a>");
+  // replace enumerate things
+  return_str     = return_str.replace(/\\begin{enumerate}\s*?\\item/g, "<ol class=\"enumerate\"><li>");
+  return_str     = return_str.replace(/\\begin{itemize}\s*?\\item/g, "<ol class=\"itemize\"><li>");
+  return_str     = return_str.replace(/\\item/g, "</li><li>");
+  return_str     = return_str.replace(/\\end{enumerate}/g, "</li></ol>");
+  return_str     = return_str.replace(/\\end{itemize}/g, "</li></ol>");
+  return_str     = return_str.replace(/\n/g, '<br>'); // replace the new line
+  return_str     = return_str.replace(/begin:/, '');
+  return_str     = return_str.replace(/proof:/, '<strong>Proof:</strong><br>');
+
+  return return_str;
+}
+
+// remove node
+function remove_independent () {
+  var informater = document.getElementById('information').innerText;
+
+  if (informater === '') {alert('Nothing to remove!');}
+
+  var key = informater.split(':')[0];
+  key = transform_to_inner(key);
+  var type = key.split(/\s+/)[0];
+  var types = JSON.parse(localStorage.getItem(type)), len = types.length;
+
+  for (var i = len - 1; i >= 0; i--) {
+    var type_i = types[i];
+    if (type_i.name === key) {
+      types.splice(i, 1);
+      alert('remove ' + key);
+      break;
+    }
+  }
+
+  localStorage.setItem(type, JSON.stringify(types));
+  do_links(); // update data
 }

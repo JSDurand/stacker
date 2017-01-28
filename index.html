@@ -66,6 +66,7 @@
           <div id="mynetwork"></div>
           <div id="information"></div>
           <button id="show-btn" onclick="show_independent();"><span>Show this</span></button>
+          <button id="remove-btn" onclick="remove_independent();"><span>Remove this</span></button>
         </div>
         <br><br><br>
         <div id="edit-area">
@@ -83,8 +84,15 @@ Lemma A
 begin:This is a statement.
 proof:This is a proof.
           </textarea>
+          <div style="text-align: left">
+            <button id="refresh-btn" onclick="refresh();"><span>Preview</span></button>
+          </div>
+          <br>
           <button id="edit-btn" onclick="parse();"><span>Submit node</span></button>
           <button id="clear-btn" onclick="clear_lemma();"><span>Clear Data</span></button>
+          <br>
+          <br>
+          <div id="preview"></div>
         </div>
         <script src="parse.js"></script>
         <script src="main.js"></script>

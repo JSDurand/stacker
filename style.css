@@ -416,6 +416,11 @@ ul:hover {
   cursor: pointer;
 }
 
+#preview {
+  text-align: left;
+  margin-left: 1em;
+}
+
 ol {
   counter-reset: list;
   padding: 10px;
@@ -438,4 +443,10 @@ ol > li:before {
 
 .clear {
   clear: both;
+}
+
+ol.itemize > li:before {
+  content: "\25Cf";
+  position: absolute;
+  margin-left: -1.7em;
 }
