@@ -63,7 +63,18 @@
         <div id="picture">
           <div id="picture-anchor"></div>
           <h2>Dependency graph using vis.js</h2>
-          <div id="mynetwork"></div>
+          <div style="text-align: left;">
+            <button><span>
+              <a id="download" href="" download="">download</a>
+            </span></button>
+            <button id="import" onclick="do_import();"><span>import</span></button>
+            <input id="file_input" type="file">
+            <br>
+            <br>
+            <br>
+          </div>
+          <div id="mynetwork">
+          </div>
           <div id="information"></div>
           <button id="show-btn" onclick="show_independent();"><span>Show this</span></button>
           <button id="remove-btn" onclick="remove_independent();"><span>Remove this</span></button>

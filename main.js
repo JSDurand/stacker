@@ -117,6 +117,7 @@ function show_dep () {
 
   show_graph(nodes, edges);
 
+  load_download();
 }
 
 function show_all () {
@@ -172,6 +173,8 @@ function show_lem (lem_str) {
   var container = document.getElementById('node-content');
   container.innerHTML = "<strong>" + true_label + ':</strong><br>' + true_statement
     + '<br><br><strong>Proof:</strong><br>' + true_proof;
+
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, 'node-content']); 
 }
 
 // This function executes when the page loads and exhibits the desired node
@@ -321,4 +324,53 @@ function remove_independent () {
 
   localStorage.setItem(type, JSON.stringify(types));
   do_links(); // update data
+}
+
+// download preparation
+function load_download () {
+  var anchor       = document.getElementById('download');
+  var lemmata      = JSON.parse(localStorage.getItem('lemmata'));
+  var theoremata   = JSON.parse(localStorage.getItem('theoremata'));
+  var propositions = JSON.parse(localStorage.getItem('propositions'));
+  var nodes        = JSON.parse(localStorage.getItem('nodes'));
+  var edges        = JSON.parse(localStorage.getItem('edges'));
+  var obj = {
+    lemmata      : lemmata,
+    theoremata   : theoremata,
+    propositions : propositions,
+    nodes        : nodes,
+    edges        : edges
+  };
+
+  var data = new Blob([JSON.stringify(obj)], {type: 'text/plain'});
+  anchor.href = URL.createObjectURL(data);
+  anchor.download = 'data.json';
+}
+
+// import
+function do_import () {
+  var files = document.getElementById('file_input').files;
+
+  if (files.length === 0) {
+    alert('choose a file to import');
+  } else {
+    var the_file = files[0];
+    if (!the_file.type.match(/json.*/)) {
+      alert('file not supported');
+      return;
+    }
+
+    var my_reader = new FileReader();
+    my_reader.onload = function () {
+      var obj = JSON.parse(my_reader.result);
+
+      localStorage.setItem('lemmata', JSON.stringify(obj.lemmata));
+      localStorage.setItem('theoremata', JSON.stringify(obj.theoremata));
+      localStorage.setItem('propositions', JSON.stringify(obj.propositions));
+      localStorage.setItem('nodes', JSON.stringify(obj.nodes));
+      localStorage.setItem('edges', JSON.stringify(obj.edges));
+    }
+
+    my_reader.readAsText(the_file);
+  }
 }

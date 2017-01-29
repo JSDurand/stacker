@@ -450,3 +450,8 @@ ol.itemize > li:before {
   position: absolute;
   margin-left: -1.7em;
 }
+
+#download {
+  text-decoration: none;
+  color: black;
+}
